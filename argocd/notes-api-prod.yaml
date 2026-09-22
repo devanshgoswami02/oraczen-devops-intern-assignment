@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: notes-api-prod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/devanshgoswami02/oraczen-devops-intern-assignment.git
+    targetRevision: main
+    path: helm/notes-api
+    helm:
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: notes-prod
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    # NOTE: no "automated" block here — prod syncs require manual approval.
