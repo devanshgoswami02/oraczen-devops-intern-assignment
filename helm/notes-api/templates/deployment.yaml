@@ -1,26 +1,46 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: {{ include "notes-api.fullname" . }}
   labels:
     {{- include "notes-api.labels" . | nindent 4 }}
+
 spec:
   replicas: {{ .Values.replicaCount }}
+
   selector:
     matchLabels:
       app.kubernetes.io/name: notes-api
       app.kubernetes.io/instance: {{ .Release.Name }}
+
   template:
     metadata:
       labels:
         app.kubernetes.io/name: notes-api
         app.kubernetes.io/instance: {{ .Release.Name }}
+
     spec:
       serviceAccountName: {{ default (include "notes-api.fullname" .) .Values.serviceAccount.name }}
+
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+
       containers:
         - name: notes-api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+
           ports:
             - containerPort: 8000
 

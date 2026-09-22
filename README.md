@@ -27,6 +27,7 @@ curl -X POST localhost:8000/notes -H 'content-type: application/json' \
   -d '{"title":"hello","content":"world"}'
 curl localhost:8000/notes
 ```
+CI pipeline test.
 
 This step is optional — it's just to help you understand the app before you
 containerize it. The real deliverables start in `ASSIGNMENT.md`.
