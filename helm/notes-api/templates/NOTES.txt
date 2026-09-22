@@ -1,0 +1,11 @@
+Notes API has been deployed!
+
+To access it locally, run:
+
+  kubectl port-forward svc/{{ include "notes-api.fullname" . }} 8000:{{ .Values.service.port }}
+
+Then in another terminal:
+
+  curl http://localhost:8000/healthz
+  curl http://localhost:8000/readyz
+  curl http://localhost:8000/notes

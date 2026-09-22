@@ -1,0 +1,36 @@
+image:
+  repository: notes-api
+  tag: local
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8000
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+serviceAccount:
+  create: true
+  name: ""
+
+# PostgreSQL subchart configuration.
+# The password is intentionally NOT defined here.
+# Bitnami PostgreSQL generates the password and stores it
+# in its Kubernetes Secret.
+postgresql:
+  enabled: true
+  auth:
+    username: notes
+    database: notes
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi

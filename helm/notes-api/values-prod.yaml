@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  tag: local
+  pullPolicy: IfNotPresent
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+postgresql:
+  primary:
+    persistence:
+      enabled: true
+      size: 5Gi
