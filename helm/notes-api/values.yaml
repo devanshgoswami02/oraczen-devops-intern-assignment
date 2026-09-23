@@ -21,10 +21,13 @@ serviceAccount:
   create: true
   name: ""
 
-# PostgreSQL subchart configuration.
-# The password is intentionally NOT defined here.
-# Bitnami PostgreSQL generates the password and stores it
-# in its Kubernetes Secret.
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 50
+
+
 postgresql:
   enabled: true
   auth:
