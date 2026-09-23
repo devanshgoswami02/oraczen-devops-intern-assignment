@@ -15,10 +15,14 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
 
   template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: notes-api
-        app.kubernetes.io/instance: {{ .Release.Name }}
+  metadata:
+    labels:
+      app.kubernetes.io/name: notes-api
+      app.kubernetes.io/instance: {{ .Release.Name }}
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8000"
+      prometheus.io/path: "/metrics"
 
     spec:
       serviceAccountName: {{ default (include "notes-api.fullname" .) .Values.serviceAccount.name }}
