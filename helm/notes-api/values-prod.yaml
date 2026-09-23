@@ -13,6 +13,8 @@ resources:
     memory: 512Mi
 
 postgresql:
+  auth:
+    existingSecret: notes-api-prod-postgresql
   primary:
     persistence:
       enabled: true
