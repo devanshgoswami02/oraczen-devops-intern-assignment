@@ -18,7 +18,15 @@ spec:
     server: https://kubernetes.default.svc
     namespace: notes-prod
 
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: notes-api-prod-postgresql
+      namespace: notes-prod
+      jsonPointers:
+        - /data
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-    # NOTE: no "automated" block here — prod syncs require manual approval.
+      - RespectIgnoreDifferences=true
