@@ -6,6 +6,12 @@ The goal of this assignment was to build the infrastructure and deployment workf
 
 ---
 
+## Architecture
+
+The following diagram shows the overall CI/CD and GitOps flow used in this assignment, including GitHub Actions, ArgoCD, Kubernetes, the Notes API, PostgreSQL, and the development HPA.
+
+![Project Architecture](docs/architecture-diagram.png)
+
 ## Project Overview
 
 This project implements a local production-style DevOps workflow:

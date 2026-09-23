@@ -45,6 +45,9 @@ The implementation was tested locally using **kind** rather than a real AWS EKS 
 
 # 3. Overall Architecture
 
+
+![Project Architecture](docs/architecture-diagram.png)
+
 The overall implementation follows this flow:
 
 ```text
